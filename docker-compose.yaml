@@ -1,0 +1,14 @@
+services:
+  authlog-monitor:
+    image: auth-log-monitor
+    container_name: authlog-monitor
+    networks:
+      - authlog-net
+    volumes:
+      - ./scripts:/tmp/scripts
+      - /var/log/auth.log:/var/log/auth.log:ro 
+    restart: always
+
+networks:
+  authlog-net:
+    name: authlog-net
