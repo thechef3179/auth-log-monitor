@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag thechef3179/auth-log-monitor:$(date +%s)
+      run: docker build . --file Dockerfile --tag thechef3179/auth-log-monitor:$(date +'%Y%m%d')
     
     - name: Push the Docker image
-      run: docker push thechef3179/auth-log-monitor:${date +%s}
+      run: docker push thechef3179/auth-log-monitor:$(date +'%Y%m%d')
