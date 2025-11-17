@@ -1,16 +1,14 @@
 services:
   authlog-monitor:
-    image: auth-log-monitor:0.1.0
+    image: auth-log-monitor:latest
     container_name: authlog-monitor
     environment:
       - WEBHOOK_URL=${WEBHOOK_URL}
     networks:
       - authlog-net
     volumes:
-      - ./scripts:/tmp/scripts
       - /var/log/auth.log:/var/log/auth.log:ro 
-    restart: always
-
+    restart: unless-stopped
 
 networks:
   authlog-net:
