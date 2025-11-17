@@ -18,7 +18,11 @@ jobs:
         password: ${{ secrets.PASSWORD }}
           
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag thechef3179/auth-log-monitor:$(date +'%y.%m.%d')
+      run: |
+        docker build . --file Dockerfile --tag thechef3179/auth-log-monitor:latest
+        docker tag thechef3179/auth-log-monitor:latest thechef3179/auth-log-monitor:$(date +'%y.%m.%d')
     
     - name: Push the Docker image
-      run: docker push thechef3179/auth-log-monitor:$(date +'%y.%m.%d')
+      run: |
+        docker push thechef3179/auth-log-monitor:latest
+        docker push thechef3179/auth-log-monitor:$(date +'%y.%m.%d')
