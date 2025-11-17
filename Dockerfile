@@ -11,13 +11,10 @@ RUN apk --no-cache add curl bash inotify-tools && \
     rm -rf /var/cache/apk/*
 
 # Create a temporary directory to hold the script
-RUN mkdir -p /tmp/scripts
-COPY ./scripts/entrypoint.sh /tmp/scripts/entrypoint.sh
+COPY ./scripts/monitor.sh /usr/local/bin/monitor.sh
 
 # Copy the entrypoint script and execute that
-RUN cp /tmp/scripts/entrypoint.sh /usr/local/bin/entrypoint.sh && \
-    chmod +x /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/monitor.sh
 
 # Set the entrypoint
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-
+ENTRYPOINT ["/usr/local/bin/monitor.sh"]
