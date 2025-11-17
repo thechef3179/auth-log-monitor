@@ -11,6 +11,7 @@ services:
       - /var/log/auth.log:/var/log/auth.log:ro 
     restart: always
 
+
 networks:
   authlog-net:
     name: authlog-net
