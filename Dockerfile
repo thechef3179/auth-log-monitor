@@ -1,10 +1,8 @@
 FROM alpine:3.22.2
 
 # set version label
-ARG BUILD_DATE
-ARG VERSION
-LABEL build_version="version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="thechef3179"
+ENV SLEEP_TIME=5
 
 # Install necessary packages
 RUN apk --no-cache add curl bash inotify-tools && \
