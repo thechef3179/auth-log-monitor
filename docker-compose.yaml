@@ -4,6 +4,7 @@ services:
     container_name: authlog-monitor
     environment:
       - WEBHOOK_URL=${WEBHOOK_URL}
+      - SLEEP_TIME=${SLEEP_TIME}
     networks:
       - authlog-net
     volumes:
