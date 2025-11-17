@@ -1,6 +1,6 @@
 services:
   authlog-monitor:
-    image: auth-log-monitor:latest
+    image: thechef3179/auth-log-monitor:latest
     container_name: authlog-monitor
     environment:
       - WEBHOOK_URL=${WEBHOOK_URL}
