@@ -21,6 +21,3 @@ RUN cp /tmp/scripts/entrypoint.sh /usr/local/bin/entrypoint.sh && \
 # Set the entrypoint
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
-# # Command to run the monitoring script
-# CMD ["/usr/local/bin/monitor.sh"]
-

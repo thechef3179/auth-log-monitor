@@ -12,11 +12,11 @@ send_notification() {
     curl -X POST -d "${log_entry}" "$WEBHOOK_URL"
 }
 
-# Trap SIGTERM signal
-trap cleanup SIGTERM SIGINT
-
 # if [ $LOG_TYPE == "file" ]; then
 while true; do
+    # Trap SIGTERM signal
+    trap cleanup SIGTERM SIGINT
+
     # Variable to store the last notification message
     LAST_MESSAGE=""
 
@@ -35,21 +35,3 @@ while true; do
     done
     sleep 5
 done
-# elif [ "$LOG_TYPE" == "journal" ]; then
-#     # Capture initial logs
-#     INITIAL_TIME=$(date +%s)
-#     journalctl -u sshd --since "0" -o short | grep -E "Accepted .*|Failed .*"
-#
-#     while true; do
-#         # Variable to store the last notification message
-#         LAST_MESSAGE=""
-#         CURRENT_TIME=$(date +%s)
-#         journalctl -u sshd --since "$CURRENT_TIME" -o short | grep -E "Accepted .*|Failed .*" | while read line; do
-#             if [ "$line" != "$LAST_MESSAGE" ]; then
-#                 send_notification "$line"
-#                 LAST_MESSAGE="$line"
-#             fi
-#         done
-#         sleep 5
-#     done
-# fi
