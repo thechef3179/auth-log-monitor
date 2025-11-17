@@ -5,4 +5,4 @@ cp /tmp/scripts/monitor.sh /usr/local/bin/monitor.sh && \
 chmod +x /usr/local/bin/monitor.sh
 
 # Execute the CMD provided in the Dockerfile
-exec "$@"
+exec "/usr/local/bin/monitor.sh"

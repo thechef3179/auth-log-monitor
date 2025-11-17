@@ -2,6 +2,9 @@ services:
   authlog-monitor:
     image: auth-log-monitor
     container_name: authlog-monitor
+    environment:
+      - WEBHOOK_URL=${WEBHOOK_URL}
+      # - LOG_TYPE=${LOG_TYPE}
     networks:
       - authlog-net
     volumes:

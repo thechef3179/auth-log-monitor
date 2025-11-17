@@ -1,27 +1,26 @@
-FROM alpine:latest
+FROM alpine:3.22.2
+
+# set version label
+ARG BUILD_DATE
+ARG VERSION
+LABEL build_version="version:- ${VERSION} Build-date:- ${BUILD_DATE}"
+LABEL maintainer="thechef3179"
 
 # Install necessary packages
-RUN apk --no-cache add curl bash inotify-tools
+RUN apk --no-cache add curl bash inotify-tools && \
+    rm -rf /var/cache/apk/*
 
 # Create a temporary directory to hold the script
 RUN mkdir -p /tmp/scripts
+COPY ./scripts/entrypoint.sh /tmp/scripts/entrypoint.sh
 
-# Copy the monitor.sh script from the mounted volume
-# COPY ./monitor.sh /tmp/scripts/monitor.sh
-COPY ./scripts/* /tmp/scripts/
-
-
-# Create a directory to hold the entrypoint script
+# Copy the entrypoint script and execute that
 RUN cp /tmp/scripts/entrypoint.sh /usr/local/bin/entrypoint.sh && \
     chmod +x /usr/local/bin/entrypoint.sh
-
-# # Move it to the final location and make it executable
-# RUN cp /tmp/scripts/monitor.sh /usr/local/bin/monitor.sh && \
-#     chmod +x /usr/local/bin/monitor.sh
 
 # Set the entrypoint
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
-# Command to run the monitoring script
-CMD ["/usr/local/bin/monitor.sh"]
+# # Command to run the monitoring script
+# CMD ["/usr/local/bin/monitor.sh"]
 
