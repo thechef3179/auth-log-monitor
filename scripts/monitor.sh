@@ -33,5 +33,5 @@ while true; do
             LAST_MESSAGE="$NEW_MESSAGE"  # Update the last message sent
         fi
     done
-    sleep 5
+    sleep $SLEEP_TIME
 done
